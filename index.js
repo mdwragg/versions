@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 
-var simpleGit = require('simple-git')( process.cwd() );
+const simpleGit = require('simple-git')( process.cwd() );
+const semver = require('semver')
 
 simpleGit.tags([], (err, tags)=>{
-  console.log(`bower: ${bowerver()} | package: ${packagever()} | GitHub: ${tags.latest}`);
+  let cleanTags = tags.all.map((x) => {
+   return semver.clean(x);
+  }).filter((x) => {
+    return x !== null;
+  });
+  console.log(`bower: ${bowerver()} | package: ${packagever()} | GitHub: ${cleanTags.sort(semver.compare).pop()}`);
+
 })
 
 var bowerver = (() =>{

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "semver": "^5.4.1",
     "simple-git": "^1.74.1"
   },
   "bin": {
